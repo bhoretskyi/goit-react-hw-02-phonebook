@@ -1,4 +1,5 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik,ErrorMessage } from 'formik';
+import { StyledButton, StyledField, StyledForm } from './Form.styled';
 import * as Yap from 'yup';
 
 const FindSchema = Yap.object().shape({
@@ -26,21 +27,21 @@ export const UserForm = ({ addName }) => {
         }}
         validationSchema={FindSchema}
       >
-        <Form>
+        <StyledForm>
           <label>
             Name
-            <Field name="name" type="text"></Field>
+            <StyledField name="name" type="text"></StyledField>
             <ErrorMessage name="name" />
           </label>
           <label>
             Number
-            <Field name="number" type="tel"></Field>
+            <StyledField name="number" type="tel"></StyledField>
             <ErrorMessage name="number" />
           </label>
 
-          <button type="submit">Add contact</button>
+          <StyledButton type="submit">Add contact</StyledButton>
          
-        </Form>
+        </StyledForm>
       </Formik>
     </div>
   );

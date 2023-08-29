@@ -2,6 +2,8 @@ import { Component } from 'react';
 import { UserForm } from './Form/Form';
 import { nanoid } from 'nanoid';
 import { ContactFilter } from './ContactFilter/ContactFilter';
+import { ContactList } from './ContactList/ContactList';
+
 export class App extends Component {
   state = {
     contacts: [
@@ -46,28 +48,19 @@ export class App extends Component {
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
     return (
-      <div>
+      <section>
         <h1>Phonebook</h1>
         <UserForm addName={this.addName} />
 
         <div>
           <h2>Contacts</h2>
           <ContactFilter filter={filter} updateFilter={this.updateFilter} />
-
-          <ul>
-            {filteredContacts.map(contact => (
-              <li key={contact.id}>
-                <p>
-                  {contact.name}: {contact.number}
-                </p>
-                <button onClick={() => this.deleteContact(contact.id)}>
-                  Delete
-                </button>
-              </li>
-            ))}
-          </ul>
+          <ContactList
+            filteredContacts={filteredContacts}
+            deleteContact={this.deleteContact}
+          />
         </div>
-      </div>
+      </section>
     );
   }
 }
