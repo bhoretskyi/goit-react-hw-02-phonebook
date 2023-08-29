@@ -1,22 +1,23 @@
-import { useFormik } from 'formik';
-import { nanoid } from 'nanoid';
+import { Formik, Field, Form } from 'formik';
 
-export const NameForm = ({ addContact }) => {
-  const formik = useFormik({
-    initialValues: { name: '' },
-    onSubmit: values => {
-      addContact(values.name);
-    },
-  });
+export const UserForm = ({ addName }) => {
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label>Name
-      <input id={nanoid()} name="name" onChange={formik.handleChange} />
-      </label>
-      <label>
-        <input type="text" />
-      </label>
-      <button type="submit">Add contact</button>
-    </form>
+    <div>
+      <Formik
+        initialValues={{ name: '', number: '' }}
+        onSubmit={values => {
+          addName([values.name,' ', values.number]);
+             
+            }
+        }
+      >
+        <Form>
+        <Field name='name' type='text'></Field>
+        <Field name='number' type='tel'></Field>
+        <button type="submit">Add contact</button>
+      </Form>
+      </Formik>
+      
+    </div>
   );
 };

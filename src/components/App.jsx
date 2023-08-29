@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { NameForm } from './Form/Form';
+import { UserForm } from './Form/Form';
 import { nanoid } from 'nanoid';
 export class App extends Component {
   state = {
@@ -7,16 +7,16 @@ export class App extends Component {
     name: '',
     number: ''
   };
-  addContact = newContact => {
+  addName = newName => {
     this.setState(prevState => ({
-      contacts: [...prevState.contacts, newContact],
+      contacts: [...prevState.contacts, newName],
     }));
   };
   render() {
     return (
       <div>
         <h1>Phoenbook</h1>
-        <NameForm addContact={this.addContact} />
+        <UserForm addName={this.addName} />
         <div>
           <h2>Contacts</h2>
           {this.state.contacts.map(contact => (
